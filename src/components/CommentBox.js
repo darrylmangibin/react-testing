@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 
 class CommentBox extends Component {
+
+  state = {
+    comment: ''
+  }
+
+  handleChange = (e) => {
+    this.setState({ comment: e.target.value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted');
+
+    this.setState({ comment: '' })
+  }
+
   render() { 
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <h4>Add a comment</h4>
-        <textarea />
+        <textarea 
+          value={this.state.comment}
+          onChange={this.handleChange}
+        />
         <div>
           <button>Submit comment</button>
         </div>
